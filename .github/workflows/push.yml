@@ -20,7 +20,6 @@ jobs:
         go-version: 1.15
     - name: Run Unit tests
       run: go test -covermode atomic -coverprofile=profile.cov $(go list -m)/...
-        working-directory: k8s
     - name: Send coverage
       env:
         COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
