@@ -7,7 +7,7 @@
 
 Package vaultkv provides version agnostic methods for read, write and list of secrets from @hashicorp Vault's KV secret engines
 
-Replaces: github.com/postfinance/vault/kv
+Replaces: `github.com/postfinance/vault/kv`
 
 ## Requirements
 
