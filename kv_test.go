@@ -1,4 +1,4 @@
-package kv_test
+package vaultkv_test
 
 import (
 	"flag"
@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/vault/api"
 	"github.com/ory/dockertest"
 	"github.com/pkg/errors"
-	"github.com/postfinance/vault/kv"
+	kv "github.com/postfinance/vaultkv"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
