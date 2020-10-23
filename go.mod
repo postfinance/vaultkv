@@ -1,4 +1,4 @@
-module github.com/postfinance/vault/kv
+module github.com/postfinance/vaultkv
 
 go 1.15
 
@@ -11,7 +11,6 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/frankban/quicktest v1.4.1 // indirect
-	github.com/go-test/deep v1.0.2 // indirect
 	github.com/google/go-cmp v0.4.0 // indirect
 	github.com/gotestyourself/gotestyourself v2.2.0+incompatible // indirect
 	github.com/hashicorp/go-retryablehttp v0.6.2 // indirect
