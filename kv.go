@@ -155,7 +155,12 @@ func getVersionAndMount(c *api.Client, p string) (version int, mount string, err
 
 			return version, k, nil
 		case "generic":
-			return 1, k, nil
+			version, err := strconv.Atoi(m.Options["version"])
+			if err != nil {
+				return 0, "", err
+			}
+
+			return version, k, nil
 		default:
 			return 0, "", fmt.Errorf("matching mount %s for path %s is not of type kv", k, p)
 		}
