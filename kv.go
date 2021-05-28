@@ -147,14 +147,7 @@ func getVersionAndMount(c *api.Client, p string) (version int, mount string, err
 		}
 
 		switch m.Type {
-		case "kv":
-			version, err := strconv.Atoi(m.Options["version"])
-			if err != nil {
-				return 0, "", err
-			}
-
-			return version, k, nil
-		case "generic":
+		case "kv", "generic":
 			version, err := strconv.Atoi(m.Options["version"])
 			if err != nil {
 				return 0, "", err
