@@ -9,9 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/vault/api"
+	vault "github.com/hashicorp/vault/api"
 	"github.com/ory/dockertest"
-	"github.com/pkg/errors"
 	kv "github.com/postfinance/vaultkv"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -25,7 +24,7 @@ const (
 // nolint: gochecknoglobals
 var (
 	host        string
-	vaultClient *api.Client
+	vaultClient *vault.Client
 	secrets     = map[string]map[string]interface{}{
 		path.Join(secretpath, "first"): {
 			"Penguin": "Oswald Chesterfield Cobblepot",
@@ -70,12 +69,12 @@ func TestMain(m *testing.M) {
 
 	fmt.Println("VAULT_ADDR:", vaultAddr)
 
-	vaultConfig := api.DefaultConfig()
+	vaultConfig := vault.DefaultConfig()
 	if err := vaultConfig.ReadEnvironment(); err != nil {
 		log.Fatal(err)
 	}
 
-	vaultClient, err = api.NewClient(vaultConfig)
+	vaultClient, err = vault.NewClient(vaultConfig)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,7 +84,7 @@ func TestMain(m *testing.M) {
 		_, err = vaultClient.Sys().ListMounts()
 		return err
 	}); err != nil {
-		log.Fatal(errors.Wrap(err, "could not connect to vault in docker"))
+		log.Fatal(fmt.Errorf("could not connect to vault in docker: %w", err))
 	}
 
 	code := m.Run()

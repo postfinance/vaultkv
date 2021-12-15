@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/vault/api"
+	vault "github.com/hashicorp/vault/api"
 )
 
 // Constants
@@ -18,7 +18,7 @@ const (
 
 // Client represents a KV client
 type Client struct {
-	client  *api.Client
+	client  *vault.Client
 	Version int
 	Mount   string
 }
@@ -27,7 +27,7 @@ type Client struct {
 // p = secret/ -> K/V engine mount path secret/
 // p = secret  -> error
 // p = /secret -> error
-func New(c *api.Client, p string) (*Client, error) {
+func New(c *vault.Client, p string) (*Client, error) {
 	if strings.HasPrefix(p, "/") {
 		return nil, fmt.Errorf("path %s must not start with '/'", p)
 	}
@@ -44,8 +44,8 @@ func New(c *api.Client, p string) (*Client, error) {
 	return &Client{client: c, Version: version, Mount: mount}, nil
 }
 
-// Client returns a Vault *api.Client
-func (c *Client) Client() *api.Client {
+// Client returns a Vault *vault.Client
+func (c *Client) Client() *vault.Client {
 	return c.client
 }
 
@@ -135,7 +135,7 @@ func FixPath(path, mount, prefix string) string {
 }
 
 // getVersionAndMount of the KV engine
-func getVersionAndMount(c *api.Client, p string) (version int, mount string, err error) {
+func getVersionAndMount(c *vault.Client, p string) (version int, mount string, err error) {
 	mounts, err := c.Sys().ListMounts()
 	if err != nil {
 		return 0, "", err
