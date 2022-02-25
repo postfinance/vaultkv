@@ -1,4 +1,4 @@
-module github.com/postfinance/vaultkv
+module github.com/pszmytka-viacom/vaultkv
 
 go 1.17
 
