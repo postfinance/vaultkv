@@ -65,6 +65,10 @@ func (c *Client) Read(p string) (map[string]interface{}, error) {
 	}
 
 	if c.Version == 2 {
+		if s.Data["data"] == nil {
+			return nil, nil
+		}
+		
 		return s.Data["data"].(map[string]interface{}), nil
 	}
 
