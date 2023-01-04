@@ -6,11 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: docker://golangci/golangci-lint:v1.50.1
+    - uses: golangci/golangci-lint-action@master
       with:
-        args: golangci-lint run
-      env:
-        CGO_ENABLED: 0
+        version: v1.50.1
   test:
     runs-on: ubuntu-latest
     steps:
