@@ -45,7 +45,7 @@ func TestMain(m *testing.M) {
 	}
 
 	// pulls an image, creates a container based on it and runs it
-	resource, err := pool.Run("vault", "latest", []string{
+	resource, err := pool.Run("hashicorp/vault", "latest", []string{
 		"VAULT_DEV_ROOT_TOKEN_ID=" + rootToken,
 		"VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200",
 	})
@@ -149,6 +149,7 @@ func TestVaultKV(t *testing.T) {
 		c, err := kv.New(vaultClient, "secret/")
 		require.NotNil(t, c)
 		require.NoError(t, err)
+
 		clnt = c
 	})
 
@@ -176,6 +177,7 @@ func TestVaultKV(t *testing.T) {
 		keys, err := clnt.List(secretpath)
 		assert.NoError(t, err)
 		assert.Len(t, keys, len(secrets))
+
 		for name := range secrets {
 			assert.Contains(t, keys, path.Base(name))
 		}
@@ -186,6 +188,7 @@ func TestVaultKV(t *testing.T) {
 			keys, err := clnt.List(name)
 			assert.Nil(t, keys)
 			assert.Nil(t, err)
+
 			break
 		}
 	})
