@@ -5,7 +5,7 @@ go 1.23
 require (
 	github.com/hashicorp/vault/api v1.16.0
 	github.com/ory/dockertest v3.3.5+incompatible
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
