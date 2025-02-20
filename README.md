@@ -1,7 +1,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/postfinance/vaultkv)](https://goreportcard.com/report/github.com/postfinance/vaultkv)
 [![GoDoc](https://godoc.org/github.com/postfinance/vaultkv?status.svg)](https://godoc.org/github.com/postfinance/vaultkv)
 [![Build Status](https://github.com/postfinance/vaultkv/workflows/build/badge.svg)](https://github.com/postfinance/vaultkv/actions)
-[![Coverage Status](https://coveralls.io/repos/github/postfinance/vaultkv/badge.svg?branch=master)](https://coveralls.io/github/postfinance/vaultkv?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/postfinance/vaultkv/badge.svg?branch=main)](https://coveralls.io/github/postfinance/vaultkv?branch=main)
 
 # Package vaultkv
 
