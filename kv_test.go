@@ -45,7 +45,7 @@ func TestMain(m *testing.M) {
 	}
 
 	// pulls an image, creates a container based on it and runs it
-	resource, err := pool.Run("vault", "latest", []string{
+	resource, err := pool.Run("hashicorp/vault", "latest", []string{
 		"VAULT_DEV_ROOT_TOKEN_ID=" + rootToken,
 		"VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200",
 	})
