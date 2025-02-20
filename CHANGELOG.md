@@ -1,3 +1,24 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [0.0.6] - 2025-02-20
+
+### 🐛 Bug Fixes
+
+- *(test)* Use correct vault docker repo
+
+### ⚙️ Miscellaneous Tasks
+
+- Attempt to fix linter
+- *(ci)* Fix test pipeline
+- Upgrade go
+- *(workflows)* Enable dependabot
+- Resolve conflicts
+- Resolve conflicts
+- Conflicts, this time for real
+- Full update to latest versions
+
 ## 0.0.5 (2023-01-05)
 
 
