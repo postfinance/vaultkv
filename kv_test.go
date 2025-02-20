@@ -149,6 +149,7 @@ func TestVaultKV(t *testing.T) {
 		c, err := kv.New(vaultClient, "secret/")
 		require.NotNil(t, c)
 		require.NoError(t, err)
+
 		clnt = c
 	})
 
@@ -176,6 +177,7 @@ func TestVaultKV(t *testing.T) {
 		keys, err := clnt.List(secretpath)
 		assert.NoError(t, err)
 		assert.Len(t, keys, len(secrets))
+
 		for name := range secrets {
 			assert.Contains(t, keys, path.Base(name))
 		}
@@ -186,6 +188,7 @@ func TestVaultKV(t *testing.T) {
 			keys, err := clnt.List(name)
 			assert.Nil(t, keys)
 			assert.Nil(t, err)
+
 			break
 		}
 	})
