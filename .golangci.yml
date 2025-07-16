@@ -2,10 +2,14 @@ version: "2"
 run:
   tests: true
 linters:
+  default: none
   enable:
     - bodyclose
+    - copyloopvar
+    - depguard
     - dogsled
     - dupl
+    - errcheck
     - funlen
     - gochecknoglobals
     - gochecknoinits
@@ -13,33 +17,45 @@ linters:
     - goconst
     - gocritic
     - gocyclo
-    - godox
     - goprintffuncname
     - gosec
+    - govet
+    - ineffassign
     - misspell
     - nakedret
+    - nolintlint
     - prealloc
+    - revive
     - rowserrcheck
     - staticcheck
     - unconvert
     - unparam
+    - unused
     - whitespace
     - wsl
-  disable:
-    - lll
-    - mnd
   settings:
+    depguard:
+      rules:
+        prevent_unmaintained_packages:
+          list-mode: strict
+          files:
+            - $all
+            - '!$test'
+          allow:
+            - $gostd
+            - github.com/hashicorp/vault
     dupl:
-      threshold: 150
+      threshold: 100
     funlen:
       lines: 100
       statements: 50
     goconst:
       min-len: 2
-      min-occurrences: 3
+      min-occurrences: 2
     gocritic:
       disabled-checks:
         - whyNoLint
+        - hugeParam
       enabled-tags:
         - diagnostic
         - experimental
@@ -51,13 +67,23 @@ linters:
     govet:
       enable:
         - shadow
+    lll:
+      line-length: 140
     misspell:
       locale: US
+    nolintlint:
+      require-explanation: true
+      allow-no-explanation:
+        - gocognit
+        - funlen
+        - gocyclo
   exclusions:
     generated: lax
     rules:
       - path: (.+)\.go$
-        text: Error return value of .(l.Sync|.*Close|.*Flush|os\.Remove(All)?|os\.(Un)?Setenv). is not checked
+        text: Error return value of .(l.Sync|.*Close|.*.Write|.*Flush|os\.Remove(All)?|os\.(Un)?Setenv). is not checked
+      - path: (.+)\.go$
+        text: G104:.*
       - path: (.+)\.go$
         text: exported method (.*\.MarshalJSON|.*\.UnmarshalJSON) should have comment or be unexported
       - path: (.+)\.go$
@@ -72,10 +98,6 @@ formatters:
   enable:
     - gofmt
     - goimports
-  settings:
-    goimports:
-      local-prefixes:
-        - github.com/ewohltman/ephemeral-roles
   exclusions:
     generated: lax
     paths:
