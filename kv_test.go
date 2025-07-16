@@ -17,11 +17,12 @@ import (
 )
 
 const (
-	rootToken  = "90b03685-e17b-7e5e-13a0-e14e45baeb2f" // nolint: gosec
+	rootToken  = "90b03685-e17b-7e5e-13a0-e14e45baeb2f" //nolint: gosec // test token
 	secretpath = "secret/test"
+	localhost  = "localhost"
 )
 
-// nolint: gochecknoglobals
+//nolint:gochecknoglobals // test globals
 var (
 	host        string
 	vaultClient *vault.Client
@@ -55,10 +56,10 @@ func TestMain(m *testing.M) {
 
 	host = os.Getenv("DOCKER_HOST")
 	if host == "" {
-		host = "localhost"
+		host = localhost
 	}
 
-	if host != "localhost" && !strings.Contains(host, ".") {
+	if host != localhost && !strings.Contains(host, ".") {
 		host += ".pnet.ch"
 	}
 
@@ -97,7 +98,7 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
-// nolint: funlen
+//nolint:funlen // test function
 func TestVaultKV(t *testing.T) {
 	var clnt *kv.Client
 
